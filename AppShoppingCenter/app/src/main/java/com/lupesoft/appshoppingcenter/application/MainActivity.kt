@@ -1,7 +1,8 @@
-package com.lupesoft.appshoppingcenter
+package com.lupesoft.appshoppingcenter.application
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.lupesoft.appshoppingcenter.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
