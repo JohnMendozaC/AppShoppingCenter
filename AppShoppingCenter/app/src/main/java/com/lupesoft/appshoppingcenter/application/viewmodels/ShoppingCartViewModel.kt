@@ -10,9 +10,8 @@ class ShoppingCartViewModel @Inject constructor(
     private val shoppingCartService: ShoppingCartService
 ) : ViewModel() {
 
-    val shoppingCartMovies = shoppingCartService.getAllMoviesIntoShoppingCart()
-
-    fun addMovie(idMovie: Int) = shoppingCartService.addMovie(idMovie)
+    val shoppingCartMovies
+        get() = shoppingCartService.getAllMoviesIntoShoppingCart()
 
     fun deleteMovie(idMovie: Int) = shoppingCartService.deleteMovie(idMovie)
 

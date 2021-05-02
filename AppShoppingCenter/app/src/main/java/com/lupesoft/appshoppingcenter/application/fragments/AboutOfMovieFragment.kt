@@ -5,16 +5,17 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.lupesoft.appshoppingcenter.R
+import com.lupesoft.appshoppingcenter.application.extensions.showMessage
 import com.lupesoft.appshoppingcenter.application.viewmodels.MoviesViewModel
 import com.lupesoft.appshoppingcenter.databinding.FragmentAboutOfMovieLayoutBinding
 import com.lupesoft.appshoppingcenter.domain.entitys.Movie
 import com.lupesoft.appshoppingcenter.infrastructure.dblocal.utils.Status
+import com.lupesoft.appshoppingcenter.infrastructure.dblocal.utils.response.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -45,61 +46,46 @@ class AboutOfMovieFragment : Fragment() {
     }
 
     private fun showMenu(v: View) {
-        val popup = PopupMenu(requireContext(), v)
-        popup.menuInflater.inflate(R.menu.popup_menu_detail, popup.menu)
-        popup.setOnMenuItemClickListener { menuItem: MenuItem ->
-            with(binding) {
-                movie?.let { data ->
+        PopupMenu(requireContext(), v).apply {
+            menuInflater.inflate(R.menu.popup_menu_detail, menu)
+            setOnMenuItemClickListener { menuItem: MenuItem ->
+                binding.movie?.let { data ->
                     when (menuItem.itemId) {
                         R.id.add_movie_detail -> {
                             viewModel.addMovie(data.id)
                                 .observe(viewLifecycleOwner, Observer { result ->
-                                    when (result.status) {
-                                        Status.LOADING ->{} //loaderAbout.isLoading = false
-                                        Status.SUCCESS -> {
-                                            //loaderAbout.isLoading = true
-                                        }
-                                        Status.ERROR -> {
-//                                            loaderAbout.isLoading = true
-                                            Toast.makeText(
-                                                context,
-                                                "Error no se pudo agregar la pelicula",
-                                                Toast.LENGTH_LONG
-                                            )
-                                                .show()
-                                        }
-                                    }
+                                    actionEventAddOrRemove(result)
                                 })
+                            true
                         }
                         R.id.delete_movie_detail -> {
                             viewModel.deleteMovie(data.id)
                                 .observe(viewLifecycleOwner, Observer { result ->
-                                    when (result.status) {
-                                        Status.LOADING -> {}//loaderAbout.isLoading = false
-                                        Status.SUCCESS -> {
-//                                            loaderAbout.isLoading = true
-                                        }
-                                        Status.ERROR -> {
-//                                            loaderAbout.isLoading = true
-                                            Toast.makeText(
-                                                context,
-                                                "Error no se pudo eliminar la pelicula",
-                                                Toast.LENGTH_LONG
-                                            )
-                                                .show()
-                                        }
-                                    }
+                                    actionEventAddOrRemove(result)
                                 })
+                            true
                         }
+                        else -> false
                     }
-                }
+                } ?: false
             }
-            true
+        }.also { it.show() }
+
+
+    }
+
+    private fun <T> actionEventAddOrRemove(result: Resource<T>) {
+        with(binding) {
+            when (result.status) {
+                Status.LOADING -> loaderAbout.isLoading = false
+                Status.SUCCESS -> loaderAbout.isLoading = true
+                Status.ERROR -> loaderAbout.isLoading = true
+            }
+            if (result.status != Status.LOADING) {
+                (result.message
+                    ?: requireContext().getString(R.string.something_unexpected_happened)
+                        ).showMessage(requireContext())
+            }
         }
-        popup.setOnDismissListener {
-            // Respond to popup being dismissed.
-        }
-        // Show the popup menu.
-        popup.show()
     }
 }

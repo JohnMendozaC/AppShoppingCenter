@@ -1,6 +1,7 @@
 package com.lupesoft.appshoppingcenter.domain.services
 
 import android.content.Context
+import android.database.sqlite.SQLiteConstraintException
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.asLiveData
 import com.lupesoft.appshoppingcenter.R
@@ -22,7 +23,9 @@ class ShoppingCartService @Inject constructor(
 
     fun getAllMoviesIntoShoppingCart(): LiveData<Resource<List<Movie>>> {
         val flow = flow {
-            emit(Resource.success(shoppingCartRepository.getAllMoviesIntoShoppingCart()))
+            emit(
+                Resource.success(data = shoppingCartRepository.getAllMoviesIntoShoppingCart())
+            )
         }
         return flow
             .onStart { emit(Resource.loading(null, null)) }
@@ -41,18 +44,23 @@ class ShoppingCartService @Inject constructor(
 
     fun addMovie(idMovie: Int): LiveData<Resource<Long>> {
         val flow = flow {
-            emit(Resource.success(shoppingCartRepository.addMovie(idMovie)))
+            emit(
+                Resource.success(
+                    shoppingCartRepository.addMovie(idMovie),
+                    message = context.getString(R.string.add_successfully)
+                )
+            )
         }
         return flow
             .onStart { emit(Resource.loading(null, null)) }
-            .catch {
-                emit(
-                    Resource.error(
-                        null,
-                        0,
-                        context.getString(R.string.something_unexpected_happened)
-                    )
-                )
+            .catch { exception ->
+                with(exception) {
+                    val msg = when (this) {
+                        is SQLiteConstraintException -> context.getString(R.string.movie_is_already)
+                        else -> context.getString(R.string.something_unexpected_happened)
+                    }
+                    emit(Resource.error(null, 0, msg))
+                }
             }
             .flowOn(Dispatchers.IO)
             .asLiveData()
@@ -60,7 +68,12 @@ class ShoppingCartService @Inject constructor(
 
     fun deleteMovie(idMovie: Int): LiveData<Resource<Int>> {
         val flow = flow {
-            emit(Resource.success(shoppingCartRepository.deleteMovie(idMovie)))
+            emit(
+                Resource.success(
+                    shoppingCartRepository.deleteMovie(idMovie),
+                    message = context.getString(R.string.remove_successfully)
+                )
+            )
         }
         return flow
             .onStart { emit(Resource.loading(null, null)) }
@@ -79,7 +92,12 @@ class ShoppingCartService @Inject constructor(
 
     fun deleteAllMovie(): LiveData<Resource<Int>> {
         val flow = flow {
-            emit(Resource.success(shoppingCartRepository.deleteAllMovie()))
+            emit(
+                Resource.success(
+                    shoppingCartRepository.deleteAllMovie(),
+                    message = context.getString(R.string.remove_all_successfully)
+                )
+            )
         }
         return flow
             .onStart { emit(Resource.loading(null, null)) }

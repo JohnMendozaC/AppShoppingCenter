@@ -30,12 +30,12 @@ class MovieService @Inject constructor(
             val response = movieDaoRetrofit.getAllMovies()
             when (val apiResponse = ApiResponse.create(response)) {
                 is ApiSuccessResponse -> {
-                    emit(Resource.loading(null, "Saving data in database..."))
+                    emit(Resource.loading(null,null))
                     movieRepository.insertAll(apiResponse.body.items.toMovieEntity())
                     emit(Resource.success(apiResponse.body.items.toMovie()))
                 }
                 is ApiEmptyResponse -> {
-                    emit(Resource.error(null, 0, "Empty response"))
+                    emit(Resource.error(null, 0, context.getString(R.string.something_unexpected_happened)))
                 }
                 is ApiErrorResponse -> {
                     emit(Resource.error(null, apiResponse.code, apiResponse.message))
@@ -44,7 +44,7 @@ class MovieService @Inject constructor(
         }
 
         return flow
-                .onStart { emit(Resource.loading(null, "Service fetching...")) }
+                .onStart { emit(Resource.loading(null, null)) }
                 .catch { exception ->
                     with(exception) {
                         emit(Resource.error(null, 0, message))

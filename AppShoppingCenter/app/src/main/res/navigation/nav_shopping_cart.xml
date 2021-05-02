@@ -6,16 +6,10 @@
     <fragment
         android:id="@+id/allMoviesFragment"
         android:name="com.lupesoft.appshoppingcenter.application.fragments.AllMoviesFragment"
-        android:label="AllMoviesFragment" >
+        android:label="@string/all_movies" >
         <action
             android:id="@+id/action_allMoviesFragment_to_aboutOfMovieFragment"
             app:destination="@id/aboutOfMovieFragment" />
-        <action
-            android:id="@+id/action_allMoviesFragment_to_shoppingCartFragment"
-            app:destination="@id/shoppingCartFragment" />
-        <action
-            android:id="@+id/action_allMoviesFragment_self"
-            app:destination="@id/allMoviesFragment" />
     </fragment>
     <fragment
         android:id="@+id/aboutOfMovieFragment"
@@ -24,5 +18,10 @@
     <fragment
         android:id="@+id/shoppingCartFragment"
         android:name="com.lupesoft.appshoppingcenter.application.fragments.ShoppingCartFragment"
-        android:label="ShoppingCartFragment" />
+        android:label="@string/shopping_car" >
+
+        <action
+            android:id="@+id/action_shoppingCartFragment_to_aboutOfMovieFragment"
+            app:destination="@id/aboutOfMovieFragment" />
+    </fragment>
 </navigation>

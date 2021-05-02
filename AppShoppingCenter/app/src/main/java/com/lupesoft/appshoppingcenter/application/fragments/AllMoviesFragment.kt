@@ -8,10 +8,13 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.lupesoft.appshoppingcenter.R
 import com.lupesoft.appshoppingcenter.application.adapters.MovieAdapter
+import com.lupesoft.appshoppingcenter.application.extensions.showMessage
 import com.lupesoft.appshoppingcenter.application.viewmodels.MoviesViewModel
 import com.lupesoft.appshoppingcenter.databinding.FragmentAllMoviesLayoutBinding
 import com.lupesoft.appshoppingcenter.infrastructure.dblocal.utils.Status
+import com.lupesoft.appshoppingcenter.infrastructure.dblocal.utils.response.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -35,48 +38,35 @@ class AllMoviesFragment : Fragment() {
         subscribeUi()
     }
 
+    private fun <T> actionEventAddOrRemove(result: Resource<T>) {
+        with(binding) {
+            when (result.status) {
+                Status.LOADING -> loader.isLoading = false
+                Status.SUCCESS -> loader.isLoading = true
+                Status.ERROR -> loader.isLoading = true
+            }
+            if (result.status != Status.LOADING) {
+                (result.message
+                    ?: requireContext().getString(R.string.something_unexpected_happened))
+                    .showMessage(requireContext())
+            }
+        }
+    }
+
     private fun subscribeActionShoppingCart() {
         with(binding) {
-            binding.movieList.adapter = MovieAdapter { addOrDelete, movieId ->
+            binding.movieList.adapter = MovieAdapter({ addOrDelete, movieId ->
                 loader.isLoading = true
                 if (addOrDelete) {
                     viewModel.addMovie(movieId).observe(viewLifecycleOwner, Observer { result ->
-                        when (result.status) {
-                            Status.LOADING -> loader.isLoading = false
-                            Status.SUCCESS -> {
-                                loader.isLoading = true
-                            }
-                            Status.ERROR -> {
-                                loader.isLoading = true
-                                Toast.makeText(
-                                    context,
-                                    "Error no se pudo agregar la pelicula",
-                                    Toast.LENGTH_LONG
-                                )
-                                    .show()
-                            }
-                        }
+                        actionEventAddOrRemove(result)
                     })
                 } else {
                     viewModel.deleteMovie(movieId).observe(viewLifecycleOwner, Observer { result ->
-                        when (result.status) {
-                            Status.LOADING -> loader.isLoading = false
-                            Status.SUCCESS -> {
-                                loader.isLoading = true
-                            }
-                            Status.ERROR -> {
-                                loader.isLoading = true
-                                Toast.makeText(
-                                    context,
-                                    "Error no se pudo eliminar la pelicula",
-                                    Toast.LENGTH_LONG
-                                )
-                                    .show()
-                            }
-                        }
+                        actionEventAddOrRemove(result)
                     })
                 }
-            }
+            }, R.menu.popup_menu)
         }
     }
 

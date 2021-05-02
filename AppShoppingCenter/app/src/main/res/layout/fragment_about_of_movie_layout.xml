@@ -171,7 +171,12 @@
 
         </androidx.core.widget.NestedScrollView>
 
-
+        <include
+            android:id="@+id/loader_about"
+            layout="@layout/loader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
