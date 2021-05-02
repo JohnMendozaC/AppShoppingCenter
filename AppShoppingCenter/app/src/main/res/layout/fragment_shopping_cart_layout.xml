@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.lupesoft.appshoppingcenter.domain.entitys.Movie" />
+
+        <variable
+            name="listShoppingCartMovie"
+            type="java.util.List&lt;Movie>" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            style="?android:textAppearanceLarge"
+            isGone="@{(listShoppingCartMovie.size() > 0)}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="5dp"
+            android:text="@string/list_is_empty"
+            android:textColor="@color/black"
+            android:visibility="gone"
+            app:drawableStartCompat="@drawable/ic_info"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.30" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/shopping_cart_movie_list"
+            isGone="@{(listShoppingCartMovie.size() == 0)}"
+            setDataMovies="@{listShoppingCartMovie}"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:contentDescription=""
+            android:paddingStart="@dimen/card_side_margin"
+            android:paddingTop="@dimen/header_margin"
+            android:paddingEnd="@dimen/card_side_margin"
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:context="com.lupesoft.appshoppingcenter.application.MainActivity"
+            tools:listitem="@layout/item_movie" />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:contentDescription="@string/remove_all_movies"
+            android:text="@string/remove_all_movies"
+            app:icon="@drawable/ic_remove_shopping_cart"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <include
+            android:id="@+id/loader"
+            layout="@layout/loader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -3,7 +3,7 @@
     <string name="alpha_numeric" translatable="false">ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789</string>
     <string name="numeric" translatable="false">0123456789</string>
 
-    <string name="app_name">AppShoppingCenter</string>
+    <string name="app_name">Shopping Center</string>
     <string name="error">¡Ocurrio algo inesperado!</string>
     <string name="decline">Cancelar</string>
     <string name="confirm">Confirmar</string>
@@ -16,9 +16,11 @@
     <string name="something_unexpected_happened">Oh oh ocurrio algo inesperado!</string>
     <string name="list_is_empty">List is empty</string>
     <string name="popularity"><![CDATA[<b>Popularity:</b>]]> %1$s</string>
+    <string name="overview"><![CDATA[<b>Overview:</b>]]> %1$s</string>
     <string name="all_movies">All movies</string>
     <string name="shopping_car">Shopping car</string>
     <string name="add_movie">Add movie</string>
-    <string name="delete_movie">Delete movie</string>
+    <string name="remove_movie">Remove movie</string>
+    <string name="remove_all_movies">Remove all movies</string>
     <string name="about_of_movie">About of movie</string>
 </resources>

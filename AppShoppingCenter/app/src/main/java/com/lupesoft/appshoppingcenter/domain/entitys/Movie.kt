@@ -1,18 +1,22 @@
 package com.lupesoft.appshoppingcenter.domain.entitys
 
-class Movie(adult: Boolean,
-            backdropPath: String,
-            id: Int,
-            mediaType: String,
-            originalLanguage: String,
-            originalTitle: String,
-            overview: String,
-            popularity: Double,
-            posterPath: String,
-            title: String,
-            video: Boolean,
-            voteAverage: Double,
-            voteCount: Int) {
+import java.io.Serializable
+
+class Movie(
+    adult: Boolean,
+    backdropPath: String,
+    id: Int,
+    mediaType: String,
+    originalLanguage: String,
+    originalTitle: String,
+    overview: String,
+    popularity: Double,
+    posterPath: String,
+    title: String,
+    video: Boolean,
+    voteAverage: Double,
+    voteCount: Int
+) : Serializable {
 
     var adult: Boolean = adult
         private set

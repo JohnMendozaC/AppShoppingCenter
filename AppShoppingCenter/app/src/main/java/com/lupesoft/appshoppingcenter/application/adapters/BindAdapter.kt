@@ -28,8 +28,19 @@ fun setDataMovies(recycler: RecyclerView, data: List<Movie>?) {
 fun loadImage(view: AppCompatImageView, url: String?) {
     if (!url.isNullOrEmpty()) {
         Glide.with(view.context)
-                .load("https://image.tmdb.org/t/p/w500"+url)
-                .override(200, 300)
-                .into(view)
+            .load("https://image.tmdb.org/t/p/w500" + url)
+            .override(200, 300)
+            .into(view)
     }
 }
+
+@BindingAdapter("imageUrlDetail")
+fun loadImageDetail(view: AppCompatImageView, url: String?) {
+    if (!url.isNullOrEmpty()) {
+        Glide.with(view.context)
+            .load("https://image.tmdb.org/t/p/w500" + url)
+            .override(600, 700)
+            .into(view)
+    }
+}
+

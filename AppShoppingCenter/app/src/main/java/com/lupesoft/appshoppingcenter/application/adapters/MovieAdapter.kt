@@ -5,6 +5,8 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.PopupMenu
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -69,13 +71,12 @@ class MovieAdapter(
         }
 
         private fun navigate(elem: Movie, view: View) {
-//            view.findNavController().navigate(
-//                R.id.action_soccerLeagueFragment_to_teamDetailsFragment, bundleOf(
-//                    "team" to elem
-//                )
-//            )
+            view.findNavController().navigate(
+                R.id.action_allMoviesFragment_to_aboutOfMovieFragment, bundleOf(
+                    "movie" to elem
+                )
+            )
         }
-
 
         fun bind(item: Movie) {
             binding.apply {
