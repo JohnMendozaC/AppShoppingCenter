@@ -2,7 +2,6 @@ package com.lupesoft.appshoppingcenter.domain.entitys
 
 class Movie(adult: Boolean,
             backdropPath: String,
-            genreIds: List<Int>,
             id: Int,
             mediaType: String,
             originalLanguage: String,
@@ -10,7 +9,6 @@ class Movie(adult: Boolean,
             overview: String,
             popularity: Double,
             posterPath: String,
-            release_date: String,
             title: String,
             video: Boolean,
             voteAverage: Double,
@@ -19,8 +17,6 @@ class Movie(adult: Boolean,
     var adult: Boolean = adult
         private set
     var backdropPath: String = backdropPath
-        private set
-    var genreIds: List<Int> = genreIds
         private set
     var id: Int = id
         private set
@@ -35,8 +31,6 @@ class Movie(adult: Boolean,
     var popularity: Double = popularity
         private set
     var posterPath: String = posterPath
-        private set
-    var release_date: String = release_date
         private set
     var title: String = title
         private set

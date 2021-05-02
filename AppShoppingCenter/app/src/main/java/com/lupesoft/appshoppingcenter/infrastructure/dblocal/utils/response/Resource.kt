@@ -1,6 +1,6 @@
-package com.lupesoft.appshoppingcenter.infrastructure.utils.response
+package com.lupesoft.appshoppingcenter.infrastructure.dblocal.utils.response
 
-import com.lupesoft.appshoppingcenter.infrastructure.utils.Status
+import com.lupesoft.appshoppingcenter.infrastructure.dblocal.utils.Status
 
 data class Resource<out T>(val status: Status, val data: T?, val code: Int?, val message: String?) {
     companion object {

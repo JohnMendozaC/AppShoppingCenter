@@ -1,3 +1,24 @@
 <resources>
+    //validate
+    <string name="alpha_numeric" translatable="false">ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789</string>
+    <string name="numeric" translatable="false">0123456789</string>
+
     <string name="app_name">AppShoppingCenter</string>
+    <string name="error">¡Ocurrio algo inesperado!</string>
+    <string name="decline">Cancelar</string>
+    <string name="confirm">Confirmar</string>
+    <string name="info">Info.</string>
+    <string name="error_data">Faltan datos por llenar.</string>
+    <string name="error_date">La fecha ingresada no es valida para poder sacar el vehiculo.</string>
+    <string name="amount_to_pay">El valor a pagar por el parqueo es de: %1$s</string>
+    <string name="date_to">Fecha: %1$s</string>
+    <string name="time_to">Hora: %1$s</string>
+    <string name="something_unexpected_happened">Oh oh ocurrio algo inesperado!</string>
+    <string name="list_is_empty">List is empty</string>
+    <string name="popularity"><![CDATA[<b>Popularity:</b>]]> %1$s</string>
+    <string name="all_movies">All movies</string>
+    <string name="shopping_car">Shopping car</string>
+    <string name="add_movie">Add movie</string>
+    <string name="delete_movie">Delete movie</string>
+    <string name="about_of_movie">About of movie</string>
 </resources>

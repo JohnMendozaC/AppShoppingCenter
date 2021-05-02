@@ -1,10 +1,10 @@
-package com.lupesoft.appshoppingcenter.infrastructure.dblocal.dtos
+package com.lupesoft.appshoppingcenter.infrastructure.api.dtos
 
 import com.lupesoft.appshoppingcenter.domain.entitys.Movie
+import com.lupesoft.appshoppingcenter.infrastructure.api.vos.MovieVo
 import com.lupesoft.appshoppingcenter.infrastructure.dblocal.entitys.MovieEntity
 
-
-fun List<Movie>.toMovieEntity(): List<MovieEntity> {
+fun List<MovieVo>.toMovieEntity(): List<MovieEntity> {
     return map {
         MovieEntity(
                 it.id,
@@ -23,7 +23,8 @@ fun List<Movie>.toMovieEntity(): List<MovieEntity> {
     }
 }
 
-fun List<MovieEntity>.toDomainModel(): List<Movie> {
+
+fun List<MovieVo>.toMovie(): List<Movie> {
     return map {
         Movie(
                 it.adult,

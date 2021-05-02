@@ -18,6 +18,6 @@ interface ShoppingCartDao {
     @Query("DELETE FROM ShoppingCart")
     fun deleteAllMoviesIntoShoppingCart(): Int
 
-    @Query("SELECT * FROM Movie LEFT JOIN ShoppingCart ON Movie.idMovie = ShoppingCart.idMovieIntoShopCart")
+    @Query("SELECT Movie.* FROM ShoppingCart LEFT JOIN Movie ON Movie.idMovie = ShoppingCart.idMovieIntoShopCart")
     fun getAllMoviesIntoShoppingCart(): List<MovieEntity>
 }
