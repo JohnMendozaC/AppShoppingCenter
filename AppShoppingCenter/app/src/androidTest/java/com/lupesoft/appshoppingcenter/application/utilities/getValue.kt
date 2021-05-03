@@ -13,7 +13,7 @@ fun <T> getValue(liveData: LiveData<T>): T {
         data[0] = o
         latch.countDown()
     }
-    latch.await(2, TimeUnit.SECONDS)
+    latch.await(100, TimeUnit.SECONDS)
 
     @Suppress("UNCHECKED_CAST")
     return data[0] as T

@@ -9,14 +9,8 @@ plugins {
 
 android {
     signingConfigs {
-        debug {
-            storeFile file('/Users/john.mendoza/Documents/UD/TestMerqueo/shop-keystore.jks')
-            storePassword '123456'
-            keyAlias 'shopping'
-            keyPassword '123456'
-        }
         release {
-            storeFile file('/Users/john.mendoza/Documents/UD/TestMerqueo/shop-keystore.jks')
+            storeFile file('../shop-keystore.jks')
             storePassword '123456'
             keyAlias 'shopping'
             keyPassword '123456'
@@ -118,6 +112,8 @@ dependencies {
     implementation "com.facebook.stetho:stetho:$rootProject.stetho"
     implementation "com.facebook.stetho:stetho-okhttp3:$rootProject.stetho"
 
+    implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
+
     // Testing dependencies
     kaptAndroidTest "com.google.dagger:hilt-compiler:$rootProject.hiltVersion"
     androidTestImplementation "androidx.arch.core:core-testing:$rootProject.coreTestingVersion"
@@ -129,8 +125,7 @@ dependencies {
     androidTestImplementation "androidx.work:work-testing:$rootProject.workVersion"
     androidTestImplementation "com.google.truth:truth:$rootProject.truthVersion"
     androidTestImplementation "com.google.dagger:hilt-android-testing:$rootProject.hiltVersion"
-    androidTestImplementation "androidx.test:runner:$rootProject.test"
-    androidTestImplementation "androidx.test:rules:$rootProject.test"
+
 
     //test unit
     testImplementation "junit:junit:$rootProject.junitVersion"
