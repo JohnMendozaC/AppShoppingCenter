@@ -1,4 +1,4 @@
-**Shopping Center**
+## Shopping Center
 
 Aplicacion para visualizar peliculas, la descripcion de la pelicula y poder agregar elementos a un carrito de compra.
 
@@ -34,16 +34,22 @@ Para el desarrollo de esta aplicacion se hizo uso del patron DDD para poder sepa
 
 ## Imagenes de la aplicaci�n 
 
-1. Lista de peliculas.
+Lista de peliculas. - Detalle de la pelicula. - El carrito.
 
-![picture](https://bitbucket.org/johnmencal/shoppingcar/raw/604027601ea5da5cd95d20ac647ff9bce3a16c06/allMovies.jpg)
+![picture](https://bitbucket.org/johnmencal/shoppingcar/raw/604027601ea5da5cd95d20ac647ff9bce3a16c06/allMovies.jpg) ![picture](https://bitbucket.org/johnmencal/shoppingcar/raw/604027601ea5da5cd95d20ac647ff9bce3a16c06/aboutMovie.jpg) ![picture](https://bitbucket.org/johnmencal/shoppingcar/raw/604027601ea5da5cd95d20ac647ff9bce3a16c06/shoppingCart.jpg)
 
-2. Detalle de la pelicula.
 
-![picture](https://bitbucket.org/johnmencal/shoppingcar/raw/604027601ea5da5cd95d20ac647ff9bce3a16c06/aboutMovie.jpg)
+## Analisis de vistas
+Lista de peliculas.
+![picture](https://bitbucket.org/johnmencal/shoppingcar/raw/834c522729074fd7d17d7284a74f133dc7028911/allMovie_layoutValidation.png)
+Detalle de la pelicula.
+![picture](https://bitbucket.org/johnmencal/shoppingcar/raw/834c522729074fd7d17d7284a74f133dc7028911/aboutMovie_layoutValidation.png)
+El carrito.
+![picture](https://bitbucket.org/johnmencal/shoppingcar/raw/834c522729074fd7d17d7284a74f133dc7028911/shoppingCart_layoutValidation.png)
 
-3. El carrito.
 
-![picture](https://bitbucket.org/johnmencal/shoppingcar/raw/604027601ea5da5cd95d20ac647ff9bce3a16c06/shoppingCart.jpg)
+
+
+
 
 
