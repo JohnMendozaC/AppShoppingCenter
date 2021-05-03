@@ -22,7 +22,7 @@ El direccionamiento a la pantalla de detalle de la pelicula.
 
 ---
 
-## Descripción arquitectura
+## Descripciï¿½n arquitectura
 
 Para el desarrollo de esta aplicacion se hizo uso del patron DDD para poder separar la logica del negocio, la infraestructura y la parte visual, tambien haciendo uso de MVVM para la capa de application.
 
@@ -32,13 +32,18 @@ Para el desarrollo de esta aplicacion se hizo uso del patron DDD para poder sepa
 
 ---
 
-## Imagenes de la aplicación 
+## Imagenes de la aplicaciï¿½n 
 
 1. Lista de peliculas.
-![picture](allMovies.jpg)
+
+![picture](https://bitbucket.org/johnmencal/shoppingcar/raw/604027601ea5da5cd95d20ac647ff9bce3a16c06/allMovies.jpg)
+
 2. Detalle de la pelicula.
-![picture](aboutMovie.jpg)
+
+![picture](https://bitbucket.org/johnmencal/shoppingcar/raw/604027601ea5da5cd95d20ac647ff9bce3a16c06/aboutMovie.jpg)
+
 3. El carrito.
-![picture](shoppingCart.jpg)
+
+![picture](https://bitbucket.org/johnmencal/shoppingcar/raw/604027601ea5da5cd95d20ac647ff9bce3a16c06/shoppingCart.jpg)
 
 
