@@ -41,7 +41,7 @@ class ShoppingCartFragment : Fragment() {
     private fun subscribeActionRemoveAllMovies() {
         with(binding) {
             fabRemoveAllMovies.setOnClickListener {
-                loaderShopping.isLoading = true
+                loaderShopping.isLoaded = true
                 viewModel.deleteAllMovie()
                     .observe(viewLifecycleOwner, Observer { result ->
                         actionEventAddOrRemove(result)
@@ -54,7 +54,7 @@ class ShoppingCartFragment : Fragment() {
         with(binding) {
             shoppingCartMovieList.adapter = MovieAdapter(
                 { _, movieId ->
-                    loaderShopping.isLoading = true
+                    loaderShopping.isLoaded = true
                     viewModel.deleteMovie(movieId)
                         .observe(viewLifecycleOwner, Observer { result ->
                             actionEventAddOrRemove(result)
@@ -67,12 +67,12 @@ class ShoppingCartFragment : Fragment() {
     private fun <T> actionEventAddOrRemove(result: Resource<T>) {
         with(binding) {
             when (result.status) {
-                Status.LOADING -> loaderShopping.isLoading = false
+                Status.LOADING -> loaderShopping.isLoaded = false
                 Status.SUCCESS -> {
                     updateListMovies()
-                    loaderShopping.isLoading = true
+                    loaderShopping.isLoaded = true
                 }
-                Status.ERROR -> loaderShopping.isLoading = true
+                Status.ERROR -> loaderShopping.isLoaded = true
             }
             if (result.status != Status.LOADING) {
                 (result.message
@@ -84,17 +84,17 @@ class ShoppingCartFragment : Fragment() {
 
     private fun updateListMovies() {
         with(binding) {
-            loaderShopping.isLoading = false
+            loaderShopping.isLoaded = false
             viewModel.shoppingCartMovies.observe(viewLifecycleOwner, Observer { result ->
                 when (result.status) {
-                    Status.LOADING -> loaderShopping.isLoading = false
+                    Status.LOADING -> loaderShopping.isLoaded = false
                     Status.SUCCESS -> {
                         listShoppingCartMovie = result.data
-                        loaderShopping.isLoading = true
+                        loaderShopping.isLoaded = true
                     }
                     Status.ERROR -> {
                         listShoppingCartMovie = null
-                        loaderShopping.isLoading = true
+                        loaderShopping.isLoaded = true
                         (result.message
                             ?: requireContext().getString(R.string.something_unexpected_happened)
                                 ).showMessage(requireContext())

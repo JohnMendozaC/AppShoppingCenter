@@ -40,7 +40,8 @@ class AboutOfMovieFragment : Fragment() {
 
     private fun subscribeClick() {
         with(binding) {
-            movie = (arguments?.get("movie") as Movie)
+            movieDetail = (arguments?.get("movie") as Movie)
+            loaderAbout.isLoaded = true
             fabActionShoppingCart.setOnClickListener { showMenu(it) }
         }
     }
@@ -49,7 +50,7 @@ class AboutOfMovieFragment : Fragment() {
         PopupMenu(requireContext(), v).apply {
             menuInflater.inflate(R.menu.popup_menu_detail, menu)
             setOnMenuItemClickListener { menuItem: MenuItem ->
-                binding.movie?.let { data ->
+                binding.movieDetail?.let { data ->
                     when (menuItem.itemId) {
                         R.id.add_movie_detail -> {
                             viewModel.addMovie(data.id)
@@ -70,16 +71,14 @@ class AboutOfMovieFragment : Fragment() {
                 } ?: false
             }
         }.also { it.show() }
-
-
     }
 
     private fun <T> actionEventAddOrRemove(result: Resource<T>) {
         with(binding) {
             when (result.status) {
-                Status.LOADING -> loaderAbout.isLoading = false
-                Status.SUCCESS -> loaderAbout.isLoading = true
-                Status.ERROR -> loaderAbout.isLoading = true
+                Status.LOADING -> loaderAbout.isLoaded = false
+                Status.SUCCESS -> loaderAbout.isLoaded = true
+                Status.ERROR -> loaderAbout.isLoaded = true
             }
             if (result.status != Status.LOADING) {
                 (result.message

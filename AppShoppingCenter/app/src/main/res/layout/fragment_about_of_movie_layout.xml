@@ -8,7 +8,7 @@
         <import type="android.text.Html" />
 
         <variable
-            name="movie"
+            name="movie_detail"
             type="com.lupesoft.appshoppingcenter.domain.entitys.Movie" />
     </data>
 
@@ -60,7 +60,7 @@
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/image_movie"
-                        imageUrlDetail="@{movie.posterPath}"
+                        imageUrlDetail="@{movie_detail.posterPath}"
                         android:layout_width="200dp"
                         app:srcCompat="@mipmap/ic_pop_corn"
                         android:layout_height="300dp"
@@ -122,7 +122,7 @@
                             android:layout_marginStart="@dimen/margin_normal"
                             android:layout_marginTop="@dimen/margin_normal"
                             android:layout_marginEnd="@dimen/margin_normal"
-                            android:text="@{movie.title}"
+                            android:text="@{movie_detail.title}"
                             android:textAppearance="?attr/textAppearanceListItem"
                             android:textColor="@color/black"
                             android:textStyle="bold"
@@ -138,7 +138,7 @@
                             android:layout_marginStart="@dimen/margin_normal"
                             android:layout_marginTop="@dimen/margin_normal"
                             android:layout_marginEnd="@dimen/margin_normal"
-                            android:text="@{Html.fromHtml(@string/overview(movie.overview))}"
+                            android:text="@{Html.fromHtml(@string/overview(movie_detail.overview))}"
                             android:textAppearance="?attr/textAppearanceListItemSecondary"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -154,7 +154,7 @@
                             android:layout_marginTop="@dimen/margin_normal"
                             android:layout_marginEnd="@dimen/margin_normal"
                             android:layout_marginBottom="@dimen/margin_normal"
-                            android:text="@{Html.fromHtml(@string/popularity(movie.popularity))}"
+                            android:text="@{Html.fromHtml(@string/popularity(movie_detail.popularity))}"
                             android:textAppearance="?attr/textAppearanceListItemSecondary"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"

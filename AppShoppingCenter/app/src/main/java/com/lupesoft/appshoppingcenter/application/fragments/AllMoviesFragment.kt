@@ -41,9 +41,9 @@ class AllMoviesFragment : Fragment() {
     private fun <T> actionEventAddOrRemove(result: Resource<T>) {
         with(binding) {
             when (result.status) {
-                Status.LOADING -> loader.isLoading = false
-                Status.SUCCESS -> loader.isLoading = true
-                Status.ERROR -> loader.isLoading = true
+                Status.LOADING -> loader.isLoaded = false
+                Status.SUCCESS -> loader.isLoaded = true
+                Status.ERROR -> loader.isLoaded = true
             }
             if (result.status != Status.LOADING) {
                 (result.message
@@ -56,7 +56,7 @@ class AllMoviesFragment : Fragment() {
     private fun subscribeActionShoppingCart() {
         with(binding) {
             binding.movieList.adapter = MovieAdapter({ addOrDelete, movieId ->
-                loader.isLoading = true
+                loader.isLoaded = true
                 if (addOrDelete) {
                     viewModel.addMovie(movieId).observe(viewLifecycleOwner, Observer { result ->
                         actionEventAddOrRemove(result)
@@ -72,17 +72,17 @@ class AllMoviesFragment : Fragment() {
 
     private fun subscribeUi() {
         with(binding) {
-            loader.isLoading = false
+            loader.isLoaded = false
             viewModel.allMovies.observe(viewLifecycleOwner, Observer { result ->
                 when (result.status) {
-                    Status.LOADING -> loader.isLoading = false
+                    Status.LOADING -> loader.isLoaded = false
                     Status.SUCCESS -> {
                         listMovie = result.data
-                        loader.isLoading = true
+                        loader.isLoaded = true
                     }
                     Status.ERROR -> {
                         listMovie = null
-                        loader.isLoading = true
+                        loader.isLoaded = true
                         Toast.makeText(context, "Error", Toast.LENGTH_LONG)
                             .show()
                     }

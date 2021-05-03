@@ -5,6 +5,7 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.lupesoft.appshoppingcenter.BuildConfig.BaseUrlImage
 import com.lupesoft.appshoppingcenter.domain.entitys.Movie
 
 @BindingAdapter("isGone")
@@ -28,7 +29,7 @@ fun setDataMovies(recycler: RecyclerView, data: List<Movie>?) {
 fun loadImage(view: AppCompatImageView, url: String?) {
     if (!url.isNullOrEmpty()) {
         Glide.with(view.context)
-            .load("https://image.tmdb.org/t/p/w500" + url)
+            .load(BaseUrlImage + url)
             .override(200, 300)
             .into(view)
     }
@@ -38,7 +39,7 @@ fun loadImage(view: AppCompatImageView, url: String?) {
 fun loadImageDetail(view: AppCompatImageView, url: String?) {
     if (!url.isNullOrEmpty()) {
         Glide.with(view.context)
-            .load("https://image.tmdb.org/t/p/w500" + url)
+            .load(BaseUrlImage + url)
             .override(600, 700)
             .into(view)
     }
