@@ -22,7 +22,7 @@ El direccionamiento a la pantalla de detalle de la pelicula.
 
 ---
 
-## DescripciÃ³n arquitectura
+## Descripción arquitectura
 
 Para el desarrollo de esta aplicacion se hizo uso del patron DDD para poder separar la logica del negocio, la infraestructura y la parte visual, tambien haciendo uso de MVVM para la capa de application.
 
@@ -32,10 +32,13 @@ Para el desarrollo de esta aplicacion se hizo uso del patron DDD para poder sepa
 
 ---
 
-## Imagenes de la aplicaciÃ³n 
+## Imagenes de la aplicación 
 
 1. Lista de peliculas.
+![picture](allMovies.jpg)
 2. Detalle de la pelicula.
+![picture](aboutMovie.jpg)
 3. El carrito.
+![picture](shoppingCart.jpg)
 
 
